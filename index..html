@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+</head>
+<body class="bg-blue-900 text-white min-h-screen flex items-center justify-center p-4 font-sans transition-colors duration-500" id="body-bg">
+
+    <main class="w-full max-w-[400px] bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-white/30 p-6 relative">
+        
+        <header class="text-center mb-6">
+            <h1 class="text-2xl font-bold tracking-wider drop-shadow-sm text-white">Météo </h1>
+            <p id="current-date" class="text-xs text-blue-50 mt-1 uppercase tracking-widest"></p>
+        </header>
+
+        <div class="relative mb-6">
+            <div class="flex items-center bg-white/30 rounded-full px-4 py-2 shadow-inner border border-white/20">
+                <input 
+                    type="text" 
+                    id="city-input" 
+                    placeholder="Entrez une ville..." 
+                    class="bg-transparent border-none outline-none text-white placeholder-blue-100 w-full ml-2"
+                >
+                <button id="search-btn" class="p-2 hover:text-blue-100 transition-colors">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <div class="mt-3 text-center">
+                <button id="geo-btn" class="text-xs flex items-center justify-center mx-auto text-white hover:bg-white/40 transition-colors gap-2 bg-white/20 px-4 py-1.5 rounded-full border border-white/10">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <span>Ma position</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden flex-col items-center justify-center py-10">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-white h-10 w-10 mb-4"></div>
+            <p class="text-sm text-blue-50 animate-pulse">Recherche des données...</p>
+        </div>
+
+        <div id="error-msg" class="hidden bg-red-500/80 p-3 rounded-lg text-center mb-4 animate-bounce border border-red-400">
+            <i class="fa-solid fa-triangle-exclamation mb-1"></i>
+            <p class="text-sm font-medium" id="error-text">Ville introuvable</p>
+        </div>
+
+        <div id="weather-result" class="hidden transition-opacity duration-500">
+            
+            <div class="flex flex-col items-center justify-center mb-6">
+                <div id="weather-icon-container" class="text-7xl mb-2 drop-shadow-xl text-yellow-300">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h2 id="temp-display" class="text-7xl font-bold drop-shadow-md">--°</h2>
+                <p id="description-display" class="text-lg capitalize mt-2 font-medium text-white/90">--</p>
+                <h3 id="city-display" class="text-xl font-semibold mt-1 tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-sm text-blue-100"></i> 
+                    <span>--</span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="bg-white/20 rounded-2xl p-4 flex flex-col items-center justify-center backdrop-blur-md border border-white/10 shadow-sm">
+                    <div class="flex items-center gap-2 mb-1 text-blue-100">
+                        <i class="fa-solid fa-droplet text-sm"></i>
+                        <span class="text-[10px] uppercase font-bold tracking-wider">Humidité</span>
+                    </div>
+                    <p id="humidity-display" class="text-xl font-bold text-white">--%</p>
+                </div>
+                
+                <div class="bg-white/20 rounded-2xl p-4 flex flex-col items-center justify-center backdrop-blur-md border border-white/10 shadow-sm">
+                    <div class="flex items-center gap-2 mb-1 text-blue-100">
+                        <i class="fa-solid fa-wind text-sm"></i>
+                        <span class="text-[10px] uppercase font-bold tracking-wider">Vent</span>
+                    </div>
+                    <p id="wind-display" class="text-xl font-bold text-white">-- km/h</p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-8 text-center">
+            <p class="text-[10px] text-white/60 text-center text-white/80 mt-2">Réalisé par Francis AGBOKOUMISSI</p>
+        </footer>
+
+    </main>
+
+   <script src="main.js" defer></script>
+</body>
+</html>
